@@ -1,4 +1,5 @@
 ﻿using System;
+using ClassLib;
 
 namespace ConsoleApp
 {
@@ -6,7 +7,9 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var class1 = new Class1();
+            var sum = class1.Add(1, 1);
+            Console.WriteLine(sum.ToString());
         }
     }
 }
