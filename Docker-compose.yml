@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  net-core:
+    build: .
+    container_name: MyCore
+    volumes:
+      - "${HOST_DIR}:/code/"
+    networks:
+      - netcore
+    depends_on:
+      - sonarqube
+
+  sonarqube:
+    image: sonarqube:latest
+    container_name: MySonarQube
+    ports:
+      - 9000:9000
+      - 9002:9002
+    networks:
+      netcore:
+        ipv4_address: 172.16.238.10
+     
+networks:
+  netcore:
+    ipam: 
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
